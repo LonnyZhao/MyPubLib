@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libhello/hello.h
+
+/cygdrive/e/workgroup/cmake/test5/src/main.c
+hello.h
+/cygdrive/e/workgroup/cmake/test5/src/hello.h
+

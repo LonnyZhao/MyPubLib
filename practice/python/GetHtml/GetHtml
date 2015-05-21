@@ -1,0 +1,13 @@
+#-*-coding:utf-8-*-
+'''
+my first App
+'''
+import sys
+import urllib
+def Main():
+    htmlresult=urllib.urlopen("http://www.amazon.com/Safe-Heart-iOximeter-Smartphone-Oximeter/dp/B0039N7HAQ/ref=sr_1_1?ie=UTF8&qid=1421292202&sr=8-1&keywords=iOximeter").read()
+    print htmlresult
+
+#this is test
+if __name__=="__main__":
+    Main()
