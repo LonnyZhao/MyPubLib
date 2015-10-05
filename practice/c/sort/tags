@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-g -Wall$/;"	m
+DataCompareFunc	sort_comm.h	/^typedef int (*DataCompareFunc)(void* ctx, void* data);$/;"	t
+INCL	Makefile	/^INCL=..\/common$/;"	m
+INCLS	Makefile	/^INCLS= -I $(INCL)$/;"	m
+OBJS	Makefile	/^OBJS=sort.o sort_comm.o test_sort.o$/;"	m
+SortFunc	sort.h	/^typedef ret_e (*SortFunc)(void** array, size_t nr, DataCompareFunc cmp);$/;"	t
+_SORT_COMM_H	sort_comm.h	10;"	d
+_SORT_H	sort.h	10;"	d
+bubble_sort	sort.c	/^ret_e bubble_sort(void **array, size_t nr, DataCompareFunc cmp)$/;"	f
+create_int_array	test_sort.c	/^void **create_int_array(int n)$/;"	f
+int_cmp	sort_comm.c	/^int int_cmp(void *a, void *b)$/;"	f
+int_cmp_invert	sort_comm.c	/^int int_cmp_invert(void *a, void *b)$/;"	f
+main	test_sort.c	/^int main(int argc, char **argv)$/;"	f
+print_arr	test_sort.c	/^void print_arr(void **array, size_t n)$/;"	f
+select_sort	sort.c	/^ret_e select_sort(void **array, size_t nr, DataCompareFunc cmp)$/;"	f
+sort_test	test_sort.c	/^void sort_test(SortFunc sort)$/;"	f
+sort_test_asc	test_sort.c	/^void sort_test_asc(SortFunc sort, int n)$/;"	f
+sort_test_dsc	test_sort.c	/^void sort_test_dsc(SortFunc sort, int n)$/;"	f
