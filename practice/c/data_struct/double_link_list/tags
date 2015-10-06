@@ -1,0 +1,90 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-g -Wall$/;"	m
+INCL	Makefile	/^INCL=..\/..\/common$/;"	m
+INCLS	Makefile	/^INCLS= -I $(INCL)$/;"	m
+OBJS	Makefile	/^OBJS=dlist.o dlist_test.o locker.o locker_pthread.o rw_locker.o$/;"	m
+RW_LOCKER_MAX	rw_locker.h	/^    RW_LOCKER_MAX$/;"	e	enum:rw_locker_mode_t
+RW_LOCKER_NONE	rw_locker.h	/^    RW_LOCKER_NONE,   \/**< 不加锁*\/$/;"	e	enum:rw_locker_mode_t
+RW_LOCKER_NR	rw_locker.h	/^    RW_LOCKER_NR,     \/**< 非上述任何类型的锁*\/$/;"	e	enum:rw_locker_mode_t
+RW_LOCKER_RD	rw_locker.h	/^    RW_LOCKER_RD,     \/**< 加读锁*\/$/;"	e	enum:rw_locker_mode_t
+RW_LOCKER_WR	rw_locker.h	/^    RW_LOCKER_WR,     \/**< 加写锁*\/$/;"	e	enum:rw_locker_mode_t
+_DLIST_H	dlist.h	10;"	d
+_LOCKER_H	locker.h	10;"	d
+_LOCKER_PTHREAD_H	locker_pthread.h	10;"	d
+_RW_LOCKER_H	rw_locker.h	10;"	d
+check_and_dec_int	dlist_test.c	/^static ret_e check_and_dec_int(void* ctx, void* data)$/;"	f	file:
+cmp_int	dlist_test.c	/^static int cmp_int(void* ctx, void* data)$/;"	f	file:
+data	dlist.h	/^    void *data;                \/**< 节点中存储的数据*\/$/;"	m	struct:dlist_node_t
+data_destroy	dlist.h	/^    dlist_data_destroy_func data_destroy;$/;"	m	struct:dlist_t
+data_destroy_ctx	dlist.h	/^    void *data_destroy_ctx;$/;"	m	struct:dlist_t
+destroy	locker.h	/^    void (*destroy)(struct locker_t *thiz);    \/**< 销毁函数接口*\/$/;"	m	struct:locker_t
+dlist_append	dlist.c	/^ret_e dlist_append(dlist_s *thiz, void *data)$/;"	f
+dlist_create	dlist.c	/^dlist_s *dlist_create(dlist_data_destroy_func data_destroy, void *ctx, rw_locker_s *rw_locker)$/;"	f
+dlist_create_node	dlist.c	/^static dlist_node_s * dlist_create_node(dlist_s *thiz, void *data)$/;"	f	file:
+dlist_data_compare_func	dlist.h	/^typedef int (*dlist_data_compare_func)(void *ctx, void *data);$/;"	t
+dlist_data_destroy_func	dlist.h	/^typedef void (*dlist_data_destroy_func)(void *ctx, void *data);$/;"	t
+dlist_data_visit_func	dlist.h	/^typedef ret_e (*dlist_data_visit_func)(void *ctx, void *data);$/;"	t
+dlist_delete	dlist.c	/^ret_e dlist_delete(dlist_s *thiz, size_t index)$/;"	f
+dlist_destroy	dlist.c	/^void dlist_destroy(dlist_s *thiz)$/;"	f
+dlist_destroy_data	dlist.c	/^static void dlist_destroy_data(dlist_s *thiz, void *data)$/;"	f	file:
+dlist_destroy_locker	dlist.c	/^static void dlist_destroy_locker(dlist_s *thiz)$/;"	f	file:
+dlist_destroy_node	dlist.c	/^static void dlist_destroy_node(dlist_s *thiz, dlist_node_s *node)$/;"	f	file:
+dlist_find	dlist.c	/^int dlist_find(dlist_s *thiz, dlist_data_compare_func cmp, void *ctx)$/;"	f
+dlist_foreach	dlist.c	/^ret_e dlist_foreach(dlist_s *thiz, dlist_data_visit_func visit, void *ctx)$/;"	f
+dlist_get_by_index	dlist.c	/^ret_e dlist_get_by_index(dlist_s *thiz, size_t index, void **data)$/;"	f
+dlist_get_node	dlist.c	/^static dlist_node_s *dlist_get_node(dlist_s *thiz, size_t index, int fail_return_last)$/;"	f	file:
+dlist_insert	dlist.c	/^ret_e dlist_insert(dlist_s *thiz, size_t index, void *data)$/;"	f
+dlist_length	dlist.c	/^size_t dlist_length(dlist_s *thiz)$/;"	f
+dlist_length_nolock	dlist.c	/^size_t dlist_length_nolock(dlist_s *thiz)$/;"	f
+dlist_node_s	dlist.h	/^}dlist_node_s;$/;"	t	typeref:struct:dlist_node_t
+dlist_node_t	dlist.h	/^typedef struct dlist_node_t$/;"	s
+dlist_prepend	dlist.c	/^ret_e dlist_prepend(dlist_s *thiz, void *data)$/;"	f
+dlist_rdlock	dlist.c	/^static void dlist_rdlock(dlist_s *thiz)$/;"	f	file:
+dlist_s	dlist.h	/^}dlist_s;$/;"	t	typeref:struct:dlist_t
+dlist_set_by_index	dlist.c	/^ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data)$/;"	f
+dlist_t	dlist.h	/^typedef struct dlist_t$/;"	s
+dlist_unlock	dlist.c	/^static void dlist_unlock(dlist_s *thiz)$/;"	f	file:
+dlist_wrlock	dlist.c	/^static void dlist_wrlock(dlist_s *thiz)$/;"	f	file:
+first	dlist.h	/^    dlist_node_s *first;$/;"	m	struct:dlist_t
+lock	locker.h	/^    ret_e (*lock)(struct locker_t *thiz);       \/**< 加锁函数接口*\/$/;"	m	struct:locker_t
+locker_destory	locker.c	/^inline void locker_destory(locker_s *thiz)$/;"	f
+locker_lock	locker.c	/^inline ret_e locker_lock(locker_s *thiz)$/;"	f
+locker_pthread_create	locker_pthread.c	/^locker_s *locker_pthread_create(void)$/;"	f
+locker_pthread_destroy	locker_pthread.c	/^static void locker_pthread_destroy(locker_s *thiz)$/;"	f	file:
+locker_pthread_lock	locker_pthread.c	/^static ret_e locker_pthread_lock(locker_s *thiz)$/;"	f	file:
+locker_pthread_unlock	locker_pthread.c	/^static ret_e locker_pthread_unlock(locker_s *thiz)$/;"	f	file:
+locker_s	locker.h	/^}locker_s;$/;"	t	typeref:struct:locker_t
+locker_t	locker.h	/^typedef struct locker_t$/;"	s
+locker_unlock	locker.c	/^inline ret_e locker_unlock(locker_s *thiz)$/;"	f
+main	dlist_test.c	/^int main(int argc, char * argv[])$/;"	f
+mode	rw_locker.h	/^    rw_locker_mode_e mode;$/;"	m	struct:rw_locker_t
+mutex	locker_pthread.h	/^    pthread_mutex_t mutex;  \/**< Linux平台下互斥量*\/$/;"	m	struct:private_info_t
+next	dlist.h	/^    struct dlist_node_t *next; \/**< 后一个节点的指针*\/$/;"	m	struct:dlist_node_t	typeref:struct:dlist_node_t::dlist_node_t
+prev	dlist.h	/^    struct dlist_node_t *prev; \/**< 前一个节点的指针*\/$/;"	m	struct:dlist_node_t	typeref:struct:dlist_node_t::dlist_node_t
+print_int	dlist_test.c	/^static ret_e print_int(void* ctx, void* data)$/;"	f	file:
+priv	locker.h	/^    char priv[0];                        \/**< 存放上下问信息，即具体实现用到的数据结构*\/$/;"	m	struct:locker_t
+private_info_s	locker_pthread.h	/^}private_info_s;$/;"	t	typeref:struct:private_info_t
+private_info_t	locker_pthread.h	/^typedef struct private_info_t$/;"	s
+rd_locker	rw_locker.h	/^    locker_s *rd_locker;$/;"	m	struct:rw_locker_t
+readers	rw_locker.h	/^    int readers;$/;"	m	struct:rw_locker_t
+rw_locker	dlist.h	/^    rw_locker_s *rw_locker;$/;"	m	struct:dlist_t
+rw_locker	rw_locker.h	/^    locker_s *rw_locker;$/;"	m	struct:rw_locker_t
+rw_locker_create	rw_locker.c	/^rw_locker_s *rw_locker_create(locker_s *rw_locker, locker_s *rd_locker)$/;"	f
+rw_locker_destory	rw_locker.c	/^void rw_locker_destory(rw_locker_s *thiz)$/;"	f
+rw_locker_mode_e	rw_locker.h	/^}rw_locker_mode_e;$/;"	t	typeref:enum:rw_locker_mode_t
+rw_locker_mode_t	rw_locker.h	/^typedef enum rw_locker_mode_t$/;"	g
+rw_locker_rdlock	rw_locker.c	/^ret_e rw_locker_rdlock(rw_locker_s *thiz)$/;"	f
+rw_locker_s	rw_locker.h	/^}rw_locker_s;$/;"	t	typeref:struct:rw_locker_t
+rw_locker_t	rw_locker.h	/^typedef struct rw_locker_t$/;"	s
+rw_locker_unlock	rw_locker.c	/^ret_e rw_locker_unlock(rw_locker_s *thiz)$/;"	f
+rw_locker_wrlock	rw_locker.c	/^ret_e rw_locker_wrlock(rw_locker_s *thiz)$/;"	f
+single_thread_test	dlist_test.c	/^static void single_thread_test(void)$/;"	f	file:
+test_int_dlist	dlist_test.c	/^static void test_int_dlist(void)$/;"	f	file:
+test_invalid_params	dlist_test.c	/^static void test_invalid_params(void)$/;"	f	file:
+unlock	locker.h	/^    ret_e (*unlock)(struct locker_t *thiz);     \/**< 解锁函数接口*\/$/;"	m	struct:locker_t

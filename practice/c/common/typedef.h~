@@ -13,7 +13,6 @@ typedef enum ret_t
     RET_OK,
     RET_ERROR,
     RET_FAIL,
-    RET_STOP,
     RET_INVALID_PARAMS,
     RET_OUT_OF_MEM,
     RET_MAX

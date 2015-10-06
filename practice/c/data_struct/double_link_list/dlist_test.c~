@@ -1,0 +1,33 @@
+/*************************************************************************
+	> File Name: dlist_test.c
+	> Brief: 
+	> Author: Lonny
+	> Mail: zhaochenglong08@126.com
+	> Created Time: 2015年10月06日 星期二 13时17分21秒
+ ************************************************************************/
+
+#include <stdio.h>
+#include "typedef.h"
+#include "common.h"
+#include "debug.h"
+#include "locker.h"
+#include "rw_locker.h"
+#include "dlist.h"
+
+
+static void single_thread_test(void)
+{
+    test_int_dlist();
+    test_invalid_params();
+
+    return;
+
+}
+
+int main(int argc, char * argv[])
+{
+    single_thread_test();
+    //multi_thread_test();
+
+    return 0;
+}
