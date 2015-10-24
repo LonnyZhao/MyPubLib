@@ -18,7 +18,13 @@ typedef enum ret_t
     RET_OUT_OF_MEM,
     RET_MAX
 }ret_e;
+
 #define TRUE 1
 #define FALSE 0
+
+typedef void (*data_destroy_func)(void *ctx, void *data);
+typedef int (*data_compare_func)(void *ctx, void *data);
+typedef ret_e (*data_visit_func)(void *ctx, void *data);
+typedef int (*data_hash_func)(void *data);
 #endif
 
