@@ -12,9 +12,6 @@
 extern "C" {
 #endif
 
-typedef int (*dlist_data_compare_func)(void *ctx, void *data);
-typedef ret_e (*dlist_data_visit_func)(void *ctx, void *data);
-typedef void (*dlist_data_destroy_func)(void *ctx, void *data);
 /**
  * 双向链表节点定义
  *
@@ -31,7 +28,6 @@ typedef struct dlist_node_t
 * */
 typedef struct dlist_t
 {
-    rw_locker_s *rw_locker;
     dlist_node_s *first;
     dlist_data_destroy_func data_destroy;
     void *data_destroy_ctx;
@@ -42,7 +38,7 @@ typedef struct dlist_t
  * @brief 创建双向链表
  *
 * */
-dlist_s *dlist_create(dlist_data_destroy_func data_destroy, void *ctx, rw_locker_s *rw_locker);
+dlist_s *dlist_create(dlist_data_destroy_func data_destroy, void *ctx);
 /**
  * @brief 插入节点函数
  * 
@@ -85,14 +81,9 @@ ret_e dlist_get_by_index(dlist_s *thiz, size_t index, void **data);
 * */
 ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data);
 
-/**
- * @brief 获取双向链表的长度，不加锁进行获取
-* */
-size_t dlist_length_nolock(dlist_s *thiz);
-
 
 /**
- * @brief 通过加锁获取双向链表的长度
+ * @brief 取双向链表的长度
 * */
 size_t dlist_length(dlist_s *thiz);
 /**

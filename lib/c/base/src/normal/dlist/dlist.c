@@ -1,6 +1,6 @@
 /*************************************************************************
 	> File Name: dlist.c
-	> Brief: 适用于单线程和多线程读写锁的双向链表程序 
+	> Brief: 简单双向链表程序 
 	> Author: Lonny
 	> Mail: zhaochenglong08@126.com
 	> Created Time: 2015年10月06日 星期二 06时55分25秒
@@ -11,8 +11,6 @@
 #include "typedef.h"
 #include "common.h"
 #include "debug.h"
-#include "locker.h"
-#include "rw_locker.h"
 #include "dlist.h"
 /**
  * @brief 内部使用函数，用于释放数据内存
@@ -72,75 +70,18 @@ static void dlist_destroy_node(dlist_s *thiz, dlist_node_s *node)
 
     return;
 }
-/**
- * @brief 内部使用函数， 用于添加写锁
- *
- * @param[in] thiz 双链表指针
- *
- * @return void
-* */
-static void dlist_wrlock(dlist_s *thiz)
-{
-    if(thiz->rw_locker != NULL)
-    {
-        rw_locker_wrlock(thiz->rw_locker);
-    }
-
-    return;
-}
-
-/**
- *@brief 内部使用函数，用于添加读锁
-* */
-static void dlist_rdlock(dlist_s *thiz)
-{
-    if(thiz->rw_locker != NULL)
-    {
-        rw_locker_rdlock(thiz->rw_locker);
-    }
-
-    return;
-}
-
-/**
- * @brief 内部使用函数，用于释放锁
-* */
-static void dlist_unlock(dlist_s *thiz)
-{
-    if(thiz->rw_locker != NULL)
-    {
-        rw_locker_unlock(thiz->rw_locker);
-    }
-
-    return;
-}
-
-/**
- * @brief 释放双链表锁
-* */
-static void dlist_destroy_locker(dlist_s *thiz)
-{
-    if(thiz->rw_locker != NULL)
-    {
-        rw_locker_unlock(thiz->rw_locker);
-        rw_locker_destory(thiz->rw_locker);
-    }
-
-    return;
-}
 
 /**
  * @brief 创建双向链表
  *
 * */
-dlist_s *dlist_create(dlist_data_destroy_func data_destroy, void *ctx, rw_locker_s *rw_locker)
+dlist_s *dlist_create(dlist_data_destroy_func data_destroy, void *ctx)
 {
     dlist_s *thiz = malloc(sizeof(dlist_s));
 
     if(thiz != NULL)
     {
         thiz->first = NULL;
-        thiz->rw_locker = rw_locker;
         thiz->data_destroy = data_destroy;
         thiz->data_destroy_ctx = ctx;
     }
@@ -190,8 +131,6 @@ ret_e dlist_insert(dlist_s *thiz, size_t index, void *data)
 
     return_val_if_fail(thiz != NULL, RET_INVALID_PARAMS);
 
-    dlist_wrlock(thiz);
-
     do
     {
         /* 创建一个新的节点*/
@@ -210,7 +149,7 @@ ret_e dlist_insert(dlist_s *thiz, size_t index, void *data)
         /* 获取插入位置*/
         cursor = dlist_get_node(thiz, index, TRUE);
         
-        if(index < dlist_length_nolock(thiz))
+        if(index < dlist_length(thiz))
         {
             /* 处理在头部和中间插入的情况*/
             node->next = cursor;
@@ -234,8 +173,6 @@ ret_e dlist_insert(dlist_s *thiz, size_t index, void *data)
         }
 
     }while(0);
-    
-    dlist_unlock(thiz);
 
     return ret;
 }
@@ -267,7 +204,6 @@ ret_e dlist_delete(dlist_s *thiz, size_t index)
 
     return_val_if_fail(thiz != NULL, RET_INVALID_PARAMS);
 
-    dlist_wrlock(thiz);
     cursor = dlist_get_node(thiz, index, 0);
 
     do
@@ -300,8 +236,6 @@ ret_e dlist_delete(dlist_s *thiz, size_t index)
         }
     }while(0);
 
-    dlist_unlock(thiz);
-
     return ret;
 }
 
@@ -314,16 +248,12 @@ ret_e dlist_get_by_index(dlist_s *thiz, size_t index, void **data)
 
     return_val_if_fail(thiz != NULL && data != NULL, RET_INVALID_PARAMS);
 
-    dlist_rdlock(thiz);
-
     cursor = dlist_get_node(thiz, index, 0);
 
     if(cursor != NULL)
     {
         *data = cursor->data;
     }
-
-    dlist_unlock(thiz);
 
     return cursor != NULL ? RET_OK : RET_INVALID_PARAMS;
 }
@@ -341,8 +271,6 @@ ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data)
 
     return_val_if_fail(thiz != NULL, RET_INVALID_PARAMS);
 
-    dlist_wrlock(thiz);
-
     cursor = dlist_get_node(thiz, index, 0);
 
     if(cursor != NULL)
@@ -354,15 +282,13 @@ ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data)
         cursor->data = data;
     }
 
-    dlist_unlock(thiz);
-
     return cursor != NULL ? RET_OK : RET_INVALID_PARAMS;
 }
 
 /**
- * @brief 获取双向链表的长度，不加锁进行获取
+ * @brief 获取双向链表的长度
 * */
-size_t dlist_length_nolock(dlist_s *thiz)
+size_t dlist_length(dlist_s *thiz)
 {
     size_t length = 0;
     dlist_node_s *iter = NULL;
@@ -374,24 +300,6 @@ size_t dlist_length_nolock(dlist_s *thiz)
         length++;
         iter = iter->next;
     }
-
-    return length;
-}
-/**
- * @brief 通过加锁获取双向链表的长度
-* */
-size_t dlist_length(dlist_s *thiz)
-{
-    size_t length = 0;
-   
-    /* 传入空指针，返回0长度*/
-    return_val_if_fail(thiz != NULL, 0);
-
-    dlist_rdlock(thiz);
-
-    length = dlist_length_nolock(thiz);
-
-    dlist_unlock(thiz);
 
     return length;
 }
@@ -413,8 +321,6 @@ ret_e dlist_foreach(dlist_s *thiz, dlist_data_visit_func visit, void *ctx)
 
     return_val_if_fail(thiz != NULL && visit != NULL, RET_INVALID_PARAMS);
 
-    dlist_rdlock(thiz);
-
     iter = thiz->first;
 
     while(iter != NULL && ret != RET_STOP)
@@ -422,8 +328,6 @@ ret_e dlist_foreach(dlist_s *thiz, dlist_data_visit_func visit, void *ctx)
         ret = visit(ctx, iter->data);
         iter = iter->next;
     }
-
-    dlist_unlock(thiz);
 
     return ret;
 }
@@ -442,8 +346,6 @@ int dlist_find(dlist_s *thiz, dlist_data_compare_func cmp, void *ctx)
 
     return_val_if_fail(thiz != NULL && cmp != NULL, RET_INVALID_PARAMS);
 
-    dlist_rdlock(thiz);
-
     iter = thiz->first;
     while(iter != NULL)
     {
@@ -456,8 +358,6 @@ int dlist_find(dlist_s *thiz, dlist_data_compare_func cmp, void *ctx)
         iter = iter->next;
     }
 
-    dlist_unlock(thiz);
-    
     return i;
 }
 /**
@@ -470,8 +370,6 @@ void dlist_destroy(dlist_s *thiz)
 
     return_if_fail(thiz != NULL);
 
-    dlist_wrlock(thiz);
-
     iter = thiz->first;
     while(iter != NULL)
     {
@@ -481,8 +379,6 @@ void dlist_destroy(dlist_s *thiz)
     }
 
     thiz->first = NULL;
-    dlist_destroy_locker(thiz);
-
     SAFE_FREE(thiz);
 
     return;

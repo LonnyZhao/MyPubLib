@@ -1,1 +1,0 @@
-SUBDIRS=sort dlist
