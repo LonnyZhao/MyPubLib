@@ -1,0 +1,6 @@
+10:48:34 **** Incremental Build of configuration Debug for project darray ****
+make all 
+make: 没有什么可以做的为 `all'。
+
+10:48:34 Build Finished (took 92ms)
+

@@ -1,0 +1,15 @@
+/*
+ * darray.h
+ *
+ *      Created on: 2015年10月25日
+ *      Author: Lonny
+ */
+
+#ifndef DARRAY_H_
+#define DARRAY_H_
+
+#ifdef __cplusplus
+#endif
+
+
+#endif /* DARRAY_H_ */

@@ -1,0 +1,49 @@
+#include <stdlib.h>
+#include "typedef.h"
+#include "common.h"
+#include "debug.h"
+#include "darray.h"
+
+dlist_s *dlist_create(data_destroy_func data_destroy, void *ctx)
+{
+
+}
+ret_e dlist_insert(darray_s *thiz, size_t index, void *data)
+{
+}
+ret_e dlist_prepend(dlist_s *thiz, void *data)
+{
+
+}
+ret_e dlist_append(dlist_s *thiz, void *data)
+{
+
+}
+ret_e dlist_delete(dlist_s *thiz, void *data)
+{
+
+}
+ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data)
+{
+
+}
+ret_e dlist_get_by_index(dlist_s *thiz, size_t index, void **data)
+{
+
+}
+size_tdlist_length(dlist_s *thiz)
+{
+
+}
+int dlist_find(dlist_s *thiz, data_compare_func cmp, void *ctx)
+{
+
+}
+ret_e dlist_foreach(dlist_s *thiz, data_visit_func visit, void *ctx)
+{
+
+}
+void dlist_destroy(dlist *thiz)
+{
+
+}

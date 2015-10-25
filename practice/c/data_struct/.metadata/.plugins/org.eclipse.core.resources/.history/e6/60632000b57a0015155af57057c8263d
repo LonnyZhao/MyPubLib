@@ -1,0 +1,30 @@
+/*
+ * darray.h
+ *
+ *      Created on: 2015年10月25日
+ *      Author: Lonny
+ */
+
+#ifndef DARRAY_H_
+#define DARRAY_H_
+#ifdef __cplusplus
+typedef struct darray_t
+{
+	void **data;
+	size_t size;
+	size_t alloc_size;
+	void *data_destroy_ctx;
+	data_destroy_func data_destroy;
+}darray_s;
+
+dlist_s *dlist_create(data_destroy_func data_destroy, void *ctx);
+ret_e dlist_insert(dlist_s *thiz, size_t index, void *data);
+ret_e dlist_prepend(dlist_s *thiz, void *data);
+ret_e dlist_append(dlist_s *thiz, void *data);
+ret_e dlist_delete(dlist_s *thiz, void *data);
+ret_e dlist_set_by_index(dlist_s *thiz, size_t index, void *data);
+ret_e dlist_get_by_index(dlist_s *thiz, size_t index, void **data);
+size_tdlist_length(dlist_s *thiz);
+int dlist_find(dlist_s )
+#endif
+#endif /* DARRAY_H_ */

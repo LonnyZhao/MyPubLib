@@ -21,6 +21,7 @@ typedef enum ret_t
 
 #define TRUE 1
 #define FALSE 0
+#define SAFE_FREE(p) if(p != NULL) {free(p); p = NULL;}
 
 typedef void (*data_destroy_func)(void *ctx, void *data);
 typedef int (*data_compare_func)(void *ctx, void *data);

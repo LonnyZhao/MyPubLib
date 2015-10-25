@@ -1,0 +1,22 @@
+/*
+ * darray.h
+ *
+ *      Created on: 2015年10月25日
+ *      Author: Lonny
+ */
+
+#ifndef DARRAY_H_
+#define DARRAY_H_
+#ifdef __cplusplus
+typedef struct darray_t
+{
+	void **data;
+	size_t size;
+	size_t alloc_size;
+	void *data_destroy_ctx;
+	data_destroy_func data_destroy;
+}darray_s;
+
+dlist_s *dlist_create(data_destroy_func data_destroy)
+#endif
+#endif /* DARRAY_H_ */
