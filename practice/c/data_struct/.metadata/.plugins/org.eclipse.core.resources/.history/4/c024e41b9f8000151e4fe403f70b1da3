@@ -1,0 +1,9 @@
+/*
+ * queue.c
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+
+typedef queue_s
+{}

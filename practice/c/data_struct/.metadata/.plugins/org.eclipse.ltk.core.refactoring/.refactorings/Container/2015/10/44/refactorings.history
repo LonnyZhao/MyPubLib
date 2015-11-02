@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Container/linear_container&apos; to &apos;linear_container.c&apos;" description="Rename resource &apos;linear_container&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="linear_container" name="linear_container.c" stamp="1446042758375" updateReferences="true"/>
+</session>

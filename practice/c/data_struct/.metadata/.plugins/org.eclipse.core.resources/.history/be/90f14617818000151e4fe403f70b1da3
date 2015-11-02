@@ -1,0 +1,15 @@
+/*
+ * linear_container_darray.h
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+
+#ifndef LINEAR_CONTAINER_DARRAY_H_
+#define LINEAR_CONTAINER_DARRAY_H_
+#ifdef __cplus
+extern "C"
+#endif
+
+
+#endif /* LINEAR_CONTAINER_DARRAY_H_ */

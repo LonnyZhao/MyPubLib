@@ -1,0 +1,11 @@
+/*
+ * module_linux.c
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+#include <dlfcn.h>
+#include "module.h"
+
+module_s
+

@@ -1,0 +1,26 @@
+/*
+ * linear_container_dlist.c
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+#include <stdlib.h>
+#include <stdio.h>
+#include "typedef.h"
+#include "common.h"
+#include "debug.h"
+
+#include "dlist.h"
+#include "linear_container.h"
+
+typedef struct struc priv_info_t
+{
+	dlist_s *dlist;
+}priv_info_s;
+
+static ret_e linear_container_dlist_insert(linear_container_s *thiz, size_t index, void *data)
+{
+
+}
+
+

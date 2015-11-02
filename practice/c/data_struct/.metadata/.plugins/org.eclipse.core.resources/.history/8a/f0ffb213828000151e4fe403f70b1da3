@@ -1,0 +1,28 @@
+/*
+ * linear_container_darray.c
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+#include <stdlib.h>
+#include <stdio.h>
+#include "typedef.h"
+#include "common.h"
+#include "debug.h"
+#include "darray.h"
+#include "linear_container.h"
+
+static ret_e linear_container_darray_insert(linear_container_s *thiz, size_t index, void *data)
+{
+	priv_info_s *priv =(priv_info_s *)thiz->priv;
+
+	return darray_insert(priv->darray, index, data);
+}
+
+linear_container_s *linear_container_darray_create(data_destroy_func data_destroy, void *ctx)
+{
+}
+
+
+
+

@@ -1,0 +1,16 @@
+/*
+ * module.h
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+
+#ifndef MODULE_H_
+#define MODULE_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+}
+
+
+#endif /* MODULE_H_ */

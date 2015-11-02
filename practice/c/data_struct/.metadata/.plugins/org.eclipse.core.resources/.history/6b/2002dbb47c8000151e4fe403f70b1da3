@@ -1,0 +1,19 @@
+/*
+ * module_linux.c
+ *
+ *  Created on: 2015年11月1日
+ *      Author: Lonny
+ */
+#include <dlfcn.h>
+#include "typedef.h"
+#include "debug.h"
+#include "common.h"
+
+#include "module.h"
+
+module_s * module_create(const char *file_name, module_falgs flags)
+{
+	module_s *thiz = NULL;
+	return_val_if_fail(file_name != NULL, NULL);
+}
+

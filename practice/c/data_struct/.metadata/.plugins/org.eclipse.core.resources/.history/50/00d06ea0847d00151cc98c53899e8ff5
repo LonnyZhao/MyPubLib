@@ -1,0 +1,36 @@
+/*
+ * linear_container.h
+ *
+ *  Created on: 2015年10月28日
+ *      Author: Lonny
+ */
+
+#ifndef LINEAR_CONTAINER_H_
+#define LINEAR_CONTAINER_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+struct _linear_container;
+typedef struct _linear_container linear_container_s;
+typedef ret_e (*linear_container_insert)(linear_container_s* thiz, size_t index, void* data);
+
+typedef ret_e (*linear_container_prepend)(linear_container_s* thiz, void* data);
+typedef ret_e (*linear_container_append)(linear_container_s* thiz, void* data);
+typedef ret_e (*linear_container_delete)(linear_container_s* thiz, size_t index);
+typedef ret_e (*linear_container_get_by_index)(linear_container_s* thiz, size_t index, void** data);
+typedef ret_e (*linear_container_set_by_index)(linear_container_s* thiz, size_t index, void* data);
+typedef size_t (*linear_container_length)(linear_container_s* thiz);
+typedef int    (*linearContainerFind)(linear_container_s* thiz, data_compare_func cmp, void* ctx);
+typedef ret_e    (*LinearContainerForeach)(linear_container_s* thiz, data_visit_func visit, void* ctx);
+typedef void   (*LinearContainerDestroy)(linear_container_s* thiz);
+
+struct _linear_container
+{
+	linear_container_insert insert;
+	linear_container_prepend prepend;
+	linear_container_append append;
+}
+#ifdef __cplusplus
+}
+#endif
+#endif /* LINEAR_CONTAINER_H_ */
