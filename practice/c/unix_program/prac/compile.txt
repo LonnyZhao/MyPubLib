@@ -1,0 +1,3 @@
+编译的方法：
+gcc 要编译的文件(有可能添加lib下的文件)　-I../include 
+gcc file_stat.c ../lib/error.c -I../include
