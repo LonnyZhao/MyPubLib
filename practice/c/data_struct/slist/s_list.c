@@ -270,7 +270,7 @@ ret_e slist_delete(slist_s *thiz, size_t index)
         
         cursor = slist_get_node(thiz, index-1, 0);
 
-        if(NULL == cursor)
+        if(NULL == cursor || NULL == cursor->next)
         {
             ret = RET_INVALID_PARAMS;
             break;
@@ -311,7 +311,7 @@ int slist_find(slist_s*thiz, slist_data_compare_func cmp, void *ctx)
         index++;
     }
     
-    return index > slist_length(thiz) ? -1 : index;
+    return index >= slist_length(thiz) ? -1 : index;
 }
 
 /*
